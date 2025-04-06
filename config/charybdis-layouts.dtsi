@@ -3,7 +3,7 @@
 / {
     charybdis_physical_layout: charybdis_physical_layout {
         compatible = "zmk,physical-layout";
-        display-name = "Charybdis 3x6";
+        display-name = "Charybdis 4x6";
 
         kscan = <&kscan0>;
         transform = <&default_transform>;
@@ -50,14 +50,32 @@
             , <&key_physical_attrs 100 100 1200  212       0     0     0>
             , <&key_physical_attrs 100 100 1300  238       0     0     0>
             , <&key_physical_attrs 100 100 1400  238       0     0     0>
+            // Fourth row - Left Half
+            , <&key_physical_attrs 100 100    0  338       0     0     0>
+            , <&key_physical_attrs 100 100  100  338       0     0     0>
+            , <&key_physical_attrs 100 100  200  312       0     0     0>
+            , <&key_physical_attrs 100 100  300  300       0     0     0>
+            , <&key_physical_attrs 100 100  400  312       0     0     0>
+            , <&key_physical_attrs 100 100  500  312       0     0     0>
+            // Fourth row - Right Half
+            , <&key_physical_attrs 100 100  900  312       0     0     0>
+            , <&key_physical_attrs 100 100 1000  312       0     0     0>
+            , <&key_physical_attrs 100 100 1100  300       0     0     0>
+            , <&key_physical_attrs 100 100 1200  312       0     0     0>
+            , <&key_physical_attrs 100 100 1300  338       0     0     0>
+            , <&key_physical_attrs 100 100 1400  338       0     0     0>
 
-            // Thumb Clusters
+            // Thumb Clusters - Left
             //                       w   h    x    y     rot    rx    ry
-            , <&key_physical_attrs 100 100  348  314       0     0     0>
-            , <&key_physical_attrs 100 100  348  314    1500   398   790>
-            , <&key_physical_attrs 100 100  348  320    3000   398   790>
-            , <&key_physical_attrs 100 100 1052  320 (-3000)  1102   790>
-            , <&key_physical_attrs 100 100 1052  314 (-1500)  1102   790>
+            , <&key_physical_attrs 100 100  148  414       0     0     0>
+            , <&key_physical_attrs 100 100  248  414       0     0     0>
+            , <&key_physical_attrs 100 100  348  414       0     0     0>
+            , <&key_physical_attrs 100 100  348  414    1500   398   790>
+            , <&key_physical_attrs 100 100  348  420    3000   398   790>
+            // Thumb Clusters - Right
+            , <&key_physical_attrs 100 100 1052  420 (-3000)  1102   790>
+            , <&key_physical_attrs 100 100 1052  414 (-1500)  1102   790>
+            , <&key_physical_attrs 100 100 1152  414       0     0     0>
             ;
     };
 };
