@@ -92,7 +92,7 @@
             // Thumb Left
             &kp DEL  &kp ESC  &kp LGUI &mkp LCLK &mo 1       
             // Thumb Right
-            &kp SPACE &kp BSPC &lt 2 RET
+            &kp SPACE &kp BSPC &lt 2 &kp RET
             >;
         };
 
