@@ -27,7 +27,7 @@
     trackball_snipe_listener {
         compatible = "zmk,input-behavior-listener";
         device = <&vtrackball>;
-        layers = <8>;
+        layers = <6>;
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
@@ -136,11 +136,11 @@
         // ╭────────┬────────┬────────┬────────┬────────┬────────╮  ╭────────┬────────┬────────┬────────┬────────┬────────╮
         // │ BOOTLDR│ RESET  │        │        │        │        │  │        │        │        │        │ BOOTLDR│ RESET  │
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
-        // │        │        │        │        │ DPI UP │SNP MODE│  │SNP MODE│ DPI UP │        │        │        │        │
+        // │        │        │        │        │ DPI UP │  SCROLL│  │  SCROLL│ DPI UP │        │        │        │        │
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
         // │        │  GUI   │  ALT   │  CTRL  │ SHIFT  │        │  │        │ SHIFT  │  CTRL  │  ALT   │  GUI   │        │
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
-        // │        │        │ SCROLL │ SNIPING│        │        │  │        │        │ SNIPING│ SCROLL │        │        │
+        // │        │        │ SCROLL │ SCROLL │        │        │  │        │        │ SCROLL │ SCROLL │        │        │
         // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
         //                            │BTN2/MB4│BTN1/LMB│BTN3/MB3│  │BTN3/MB3│BTN1/LMB│BTN2/MB4│
         //                            │        │        │        │  │        │        │        │
@@ -149,9 +149,9 @@
         pointer_layer {
             bindings = <
 &bootloader  &sys_reset  &none      &none       &none      &none        &none      &none      &none       &none      &bootloader  &sys_reset
-&none        &none       &none      &none       &none      &mo 8        &mo 8      &none      &none       &none      &none        &none
+&none        &none       &none      &none       &none      &mo 6        &mo 6      &none      &none       &none      &none        &none
 &none        &kp LGUI    &kp LALT   &kp LCTRL   &kp LSHFT  &none        &none      &kp RSHFT  &kp RCTRL   &kp RALT   &kp RGUI     &none
-&none        &trans      &mo 6      &mo 8       &none      &none        &none      &none      &mo 8       &mo 6      &trans       &none
+&none        &trans      &mo 6      &mo 6       &none      &none        &none      &none      &mo 6       &mo 6      &trans       &none
 &mkp MB4     &mkp LCLK   &mkp MB3   &none       &none                   &mkp MB3   &mkp LCLK  &mkp MB4
             >;
         };
@@ -204,19 +204,8 @@
             >;
         };
 
-        // Layer 6 - Scroll mode for pointer
+        // Layer 6 - Scroll/Sniping mode for pointer (combined both scroll and snipe functions)
         scroll_mode {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans             &trans  &trans  &trans
-            >;
-        };
-        
-        // Layer 8 - Sniping mode for pointer
-        snipe_mode {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
