@@ -102,5 +102,26 @@
             #binding-cells = <0>;
             bindings = <&kp FSLH>, <&home_macro>;
         };
+
+        // Add pointer behaviors for auto-activation
+        auto_pointer: auto_pointer {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&tog 3>;  // Toggle pointer layer (Layer 3)
+        };
+
+        // Sniping mode behavior for precision control
+        sniping_mode: sniping_mode {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&mo 8>;  // Momentary layer 8 for sniping mode
+        };
+
+        // Scroll mode behavior
+        scroll_mode: scroll_mode {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&mo 6>;  // Momentary layer 6 for scroll mode
+        };
     };
 };
