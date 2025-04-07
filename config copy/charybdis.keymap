@@ -1,0 +1,183 @@
+#include <dt-bindings/zmk/mouse.h>
+#include <behaviors/mouse_keys.dtsi>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
+
+/ {
+    /* input config for mouse move mode */
+
+    trackball_listener {
+        compatible = "zmk,input-behavior-listener";
+        device = <&vtrackball>;
+        layers = <0 2 5>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        scale-multiplier = <4>;
+        scale-divisor = <5>;
+
+        // bindings = <&ib_toggle_layer 7>;
+    };
+
+    /* input config for snipe mode */
+
+    trackball_snipe_listener {
+        compatible = "zmk,input-behavior-listener";
+        device = <&vtrackball>;
+        layers = <8>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        scale-multiplier = <1>;
+        scale-divisor = <6>;
+    };
+
+    /* input config for mouse scroll mode */
+
+    trackball_scroll_listener {
+        compatible = "zmk,input-behavior-listener";
+        device = <&vtrackball>;
+        layers = <6>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_MISC>;
+        y-input-code = <INPUT_REL_WHEEL>;
+        y-invert;
+        bindings = <&ib_wheel_scaler 1 14>;
+    };
+
+    /* define a resolution down scaler only for INPUT_REL_WHEEL */
+
+    ib_wheel_scaler: ib_wheel_scaler {
+        compatible = "zmk,input-behavior-scaler";
+        #binding-cells = <2>;
+        evt-type = <INPUT_EV_REL>;
+        input-code = <INPUT_REL_WHEEL>;
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        // Layer 0 - Default QWERTY
+        // ╭────────┬────────┬────────┬────────┬────────┬────────╮  ╭────────┬────────┬────────┬────────┬────────┬────────╮
+        // │  ESC   │   1    │   2    │   3    │   4    │   5    │  │   6    │   7    │   8    │   9    │   0    │   -    │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │  TAB   │   Q    │   W    │   E    │   R    │   T    │  │   Y    │   U    │   I    │   O    │   P    │   \    │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │  CTRL  │   A    │   S    │   D    │   F    │   G    │  │   H    │   J    │   K    │   L    │   ;    │   '    │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │  SHIFT │   Z    │   X    │   C    │   V    │   B    │  │   N    │   M    │   ,    │   .    │   /    │  SHIFT │
+        // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
+        //                            │   DEL  │   GUI  │   L1   │  │ SPACE  │  BSPC  │ RET/L2 │
+        //                            │   ESC  │ L CLICK│        │  │        │        │        │
+        //                            ╰────────┴────────┴────────┴──┴────────┴────────┴────────╯
+
+        default_layer {
+            bindings = <
+&kp ESC    &kp N1   &kp N2    &kp N3     &kp N4  &kp N5    &kp N6     &kp N7    &kp N8     &kp N9   &kp N0    &kp MINUS
+&kp TAB    &kp Q    &kp W     &kp E      &kp R   &kp T     &kp Y      &kp U     &kp I      &kp O    &kp P     &kp BSLH
+&kp LCTRL  &kp A    &kp S     &kp D      &kp F   &kp G     &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp APOS
+&kp LSHFT  &kp Z    &kp X     &kp C      &kp V   &kp B     &kp N      &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
+&kp DEL    &kp ESC  &kp LGUI  &mkp LCLK  &mo 1             &kp SPACE  &kp BSPC  &lt 2 RET
+            >;
+        };
+
+        // Layer 1 - Function and Media 
+        // ╭────────┬────────┬────────┬────────┬────────┬────────╮  ╭────────┬────────┬────────┬────────┬────────┬────────╮
+        // │   `    │  F1    │  F2    │  F3    │  F4    │  F5    │  │  F6    │  F7    │  F8    │  F9    │  F10   │  F11   │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │ HOME   │  UP    │  END   │ PG_UP  │PRINTSCR│  │   -    │   7    │   8    │   9    │  F12   │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │ LEFT   │ DOWN   │ RIGHT  │ PG_DN  │  INS   │  │   +    │   4    │   5    │   6    │   *    │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │ CAPS   │ SCROLL │        │        │ PAUSE  │  │   0    │   1    │   2    │   3    │   /    │        │
+        // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
+        //                            │  PLAY  │  MUTE  │VOL DOWN│  │VOL UP  │        │        │
+        //                            │        │        │        │  |        │        │        │
+        //                            ╰────────┴────────┴────────┴──┴────────┴────────┴────────╯
+
+        fn_media_layer {
+            bindings = <
+&kp GRAVE  &kp F1    &kp F2      &kp F3     &kp F4        &kp F5       &kp F6        &kp F7  &kp F8  &kp F9  &kp F10    &kp F11
+&trans     &kp HOME  &kp UP      &kp END    &kp PG_UP     &kp PSCRN    &kp MINUS     &kp N7  &kp N8  &kp N9  &kp F12    &trans
+&trans     &kp LEFT  &kp DOWN    &kp RIGHT  &kp PG_DN     &kp INS      &kp PLUS      &kp N4  &kp N5  &kp N6  &kp ASTRK  &trans
+&trans     &kp CAPS  &kp SLCK    &trans     &trans        &kp PAUSE    &kp N0        &kp N1  &kp N2  &kp N3  &kp FSLH   &trans
+&kp C_PP   &none     &kp C_MUTE  &none      &kp C_VOL_DN               &kp C_VOL_UP  &none   &none
+            >;
+        };
+
+        // Layer 2 - Navigation and Mouse
+        // ╭────────┬────────┬────────┬────────┬────────┬────────╮  ╭────────┬────────┬────────┬────────┬────────┬────────╮
+        // │        │        │        │        │        │        │  │        │        │        │        │        │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │MOUSE UP│        │ HOME   │ PG UP  │  │        │        │   UP   │        │        │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │MOUSE LT│MOUSE DN│MOUSE RT│  END   │ PG DN  │  │        │  LEFT  │  DOWN  │ RIGHT  │        │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │        │        │  │        │        │        │        │        │        │
+        // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
+        //                            │BUTTON 4│R CLICK │   L4   │  │BUTTON 5│   L5   │  SNIPE │
+        //                            │L CLICK │        │        │  │
+        //                            ╰────────┴────────┴────────┴──┴────────┴────────┴────────╯
+
+        nav_mouse_layer {
+            bindings = <
+&trans    &none           &none           &none            &none     &none        &none     &none     &none     &none      &none  &none
+&trans    &none           &mmv MOVE_UP    &none            &kp HOME  &kp PG_UP    &none     &none     &kp UP    &none      &none  &none
+&trans    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp END   &kp PG_DN    &none     &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
+&trans    &none           &none           &none            &none     &none        &none     &none     &none     &none      &none  &none
+&mkp MB4  &mkp LCLK       &mkp RCLK       &none            &mo 4                  &mkp MB5  &mo 5     &mo 8
+            >;
+        };
+
+        // Layer 3 - Bluetooth Controls
+        // ╭────────┬────────┬────────┬────────┬────────┬────────╮  ╭────────┬────────┬────────┬────────┬────────┬────────╮
+        // │        │ BT 0   │ BT 1   │ BT 2   │ BT 3   │ BT 4   │  │        │        │        │        │        │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │BT CLEAR│        │  │        │        │        │        │        │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │OUT TOGL│        │  │        │        │        │        │        │        │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │        │        │  │        │        │        │        │        │        │
+        // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
+        //                            │        │        │        │  │        │        │        │
+        //                            │        │        │        │  │
+        //                            ╰────────┴────────┴────────┴──┴────────┴────────┴────────╯
+
+        bt_layer {
+            bindings = <
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none   &none   &none   &none  &none  &none
+&trans  &none         &none         &none         &bt BT_CLR    &none           &none   &none   &none   &none  &none  &none
+&trans  &none         &none         &none         &out OUT_TOG  &none           &none   &none   &none   &none  &none  &none
+&trans  &none         &none         &none         &none         &none           &none   &none   &none   &none  &none  &none
+&trans  &trans        &trans        &trans        &trans                        &trans  &trans  &trans
+            >;
+        };
+
+        // Layer 4 - Symbols
+        // ╭────────┬────────┬────────┬────────┬────────┬────────╮  ╭────────┬────────┬────────┬────────┬────────┬────────╮
+        // │        │   !    │   @    │   #    │   $    │   %    │  │   ^    │   &    │   *    │   (    │   )    │   _    │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │        │        │  │        │        │        │   {    │   }    │   |    │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │        │        │  │        │        │        │   [    │   ]    │   "    │
+        // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
+        // │        │        │        │        │        │        │  │        │        │   <    │   >    │   ?    │   +    │
+        // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
+        //                            │        │        │        │  │        │        │        │
+        //                            │        │        │        │  │
+        //                            ╰────────┴────────┴────────┴──┴────────┴────────┴────────╯
+
+        symbol_layer {
+            bindings = <
+&trans  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR  &kp RPAR   &kp UNDER
+&trans  &none     &none   &none     &none     &none        &none      &none     &none      &kp LBRC  &kp RBRC   &kp PIPE
+&trans  &none     &none   &none     &none     &none        &none      &none     &none      &kp LBKT  &kp RBKT   &kp DQT
+&trans  &none     &none   &none     &none     &none        &none      &none     &kp LT     &kp GT    &kp QMARK  &kp PLUS
+&trans  &trans    &trans  &trans    &trans                 &trans     &trans    &trans
+            >;
+        };
+    };
+};

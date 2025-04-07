@@ -1,0 +1,105 @@
+/ {
+    macros {
+        v_split: v_split {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp LC(B) &kp PRCNT>;
+        };
+
+        h_split: h_split {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp LC(B) &kp DQT>;
+        };
+
+        detach_session: detach_session {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(B) &kp D>;
+        };
+
+        sync_panes: sync_panes {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(B) &kp SEMI>;
+        };
+
+        next_pane: next_pane {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(B) &kp O>;
+        };
+
+        show_sessions: show_sessions {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(B) &kp S>;
+        };
+
+        create_or_attach: create_or_attach {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(B) &kp C>;
+        };
+
+        shrug: shrug {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp T>, <&macro_tap &kp M>, <&macro_tap &kp U>, <&macro_tap &kp X>, <&macro_tap &kp SPC>, <&macro_tap &kp N>, <&macro_tap &kp E>, <&macro_tap &kp W>, <&macro_tap &kp MINUS>, <&macro_tap &kp S>, <&macro_tap &kp E>, <&macro_tap &kp S>, <&macro_tap &kp S>, <&macro_tap &kp I>, <&macro_tap &kp O>, <&macro_tap &kp N>, <&macro_tap &kp SPC>, <&macro_tap &kp MINUS>, <&macro_tap &kp A>, <&macro_tap &kp SPC>, <&macro_tap &kp MINUS>, <&macro_tap &kp S>, <&macro_tap &kp SPC>;
+        };
+
+        lgtm: lgtm {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp U>, <&macro_tap &kp N0 &kp N0 &kp A &kp F &kp SPC>, <&macro_tap &kp BACKSLASH>, <&macro_tap &kp BACKSLASH>, <&macro_tap &kp UNDER>, <&macro_tap &kp LPAR>, <&macro_tap &kp U>, <&macro_tap &kp N3 &kp N0 &kp C &kp N4 &kp SPC>, <&macro_tap &kp RPAR>, <&macro_tap &kp UNDER>, <&macro_tap &kp FSLH>, <&macro_tap &kp U>, <&macro_tap &kp N0 &kp N0 &kp A &kp F &kp SPC>;
+        };
+
+        gcm: gcm {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp G &kp I &kp T &kp SPACE &kp C &kp O &kp M &kp M &kp I &kp T &kp SPACE &kp MINUS &kp M &kp SPACE &kp W &kp I &kp P>;
+        };
+
+        sudo: sudo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp S &kp U &kp D &kp O>, <&macro_tap &kp SPACE>, <&macro_tap &kp EXCL &kp EXCL>, <&macro_tap &kp RET>;
+        };
+
+        clip_hist: clip_hist {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp V>;
+        };
+
+        new_dir: new_dir {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp N>;
+        };
+
+        grave_macro: grave_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp GRAVE>, <&macro_tap &kp GRAVE>, <&macro_tap &kp LEFT_ARROW>;
+        };
+
+        minus_macro: minus_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp SPACE>, <&macro_tap &kp MINUS>, <&macro_tap &kp SPACE>;
+        };
+
+        equals_macro: equals_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp SPACE>, <&macro_tap &kp EQUAL>, <&macro_tap &kp SPACE>;
+        };
+
+        home_macro: home_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp TILDE>, <&macro_tap &kp FSLH>;
+        };
+    };
+};
