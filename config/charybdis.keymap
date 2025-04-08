@@ -12,7 +12,7 @@
     trackball_listener {
         compatible = "zmk,input-behavior-listener";
         device = <&vtrackball>;
-        layers = <0 2 5>;
+        layers = <0 2 3 5>;
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
@@ -70,8 +70,8 @@
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
         // │  CTRL  │   Z    │   X    │   C    │   V    │   B    │  │   N    │   M    │   ,    │   .    │   /    │  ALT   │
         // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
-        //                            │  GUI   │ SPACE  │ LOWER  │  │ RAISE  │ ENTER  │  DEL   │
-        //                            │        │  LALT  │ BSPC   │  │        │        │        │
+        //                            │  GUI   │ SPACE  │ LOWER  │  │ ENTER  │  DEL   │        │
+        //                            │        │  LALT  │ BSPC   │  │ RASIE  │        │        │
         //                            ╰────────┴────────┴────────┴──┴────────┴────────┴────────╯
 
         base_layer {
@@ -114,9 +114,9 @@
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
         // │        │        │        │        │        │        │  │        │        │        │        │        │ VOL UP │
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
-        // │ MPLAY  │  LEFT  │   UP   │  DOWN  │ RIGHT  │        │  │        │ SHIFT  │  CTRL  │  ALT   │  GUI   │  MUTE  │
+        // │ MPLAY  │        │        │        │        │        │  │  LEFT  │  DOWN  │   UP   │  RIGHT │        │  MUTE  │
         // ├────────┼────────┼────────┼────────┼────────┼────────┤  ├────────┼────────┼────────┼────────┼────────┼────────┤
-        // │ MPREV  │  HOME  │ PG UP  │ PG DN  │  END   │        │  │        │        │        │        │        │ VOL DN │
+        // │ MPREV  │  HOME  │ PG UP  │ PG DN  │  END   │        │  │        │ SHIFT  │  CTRL  │  ALT   │  GUI   │ VOL DN │
         // ╰────────┴────────┴────────┼────────┼────────┼────────┼──┼────────┼────────┼────────┴────────┴────────┴────────╯
         //                            │        │        │        │  │        │        │        │
         //                            │        │        │        │  │        │        │        │
@@ -126,8 +126,8 @@
             bindings = <
 &kp F12    &kp F1    &kp F2     &kp F3     &kp F4    &kp F5       &kp F6     &kp F7    &kp F8    &kp F9     &kp F10   &kp F11
 &none      &none     &none      &none      &none     &none        &none      &none     &none     &none      &none     &kp C_VOL_UP
-&kp C_PP   &kp LEFT  &kp UP     &kp DOWN   &kp RIGHT &none        &none      &kp RSHFT &kp RCTRL &kp RALT   &kp RGUI  &kp C_MUTE
-&kp C_PREV &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &none        &none      &none     &none     &none      &none     &kp C_VOL_DN
+&kp C_PP   &none     &none      &none      &none     &none        &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT  &none     &kp C_MUTE
+&kp C_PREV &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &none        &none      &kp RSHFT &kp RCTRL &kp RALT   &kp RGUI  &kp C_VOL_DN
 &trans     &trans    &trans     &trans     &trans                  &trans     &trans    &trans
             >;
         };

@@ -140,16 +140,16 @@ layers:
   - ''
   - VOL UP
   - PP
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
   - LEFT
-  - UP
   - DOWN
+  - UP
   - RIGHT
   - ''
-  - ''
-  - RSHFT
-  - RCTRL
-  - RALT
-  - RGUI
   - MUTE
   - PREV
   - HOME
@@ -158,10 +158,10 @@ layers:
   - END
   - ''
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - RSHFT
+  - RCTRL
+  - RALT
+  - RGUI
   - VOL DN
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
