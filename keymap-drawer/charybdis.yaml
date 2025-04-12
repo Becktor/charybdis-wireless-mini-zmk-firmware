@@ -51,7 +51,7 @@ layers:
   - LALT
   - SPACE
   - lower
-  - GUI
+  - LGUI
   - BSPC
   - LALT
   - raise
@@ -220,14 +220,14 @@ layers:
   - scroll_mode
   - {t: ▽, type: trans}
   - ''
-  - BACK
   - L CLK
+  - R CLK
   - '&mkp MB3'
   - ''
   - ''
-  - L CLK
-  - '&mkp MB3'
   - BACK
+  - FWD
+  - L CLK
   bt:
   - {t: ▽, type: trans}
   - {t: BT, h: '0'}
