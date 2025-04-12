@@ -25,7 +25,7 @@ layers:
   - O
   - P
   - \
-  - LSHFT
+  - LCTRL
   - A
   - S
   - D
@@ -37,7 +37,7 @@ layers:
   - L
   - ;
   - ''''
-  - LCTRL
+  - LSHFT
   - {t: Z, h: pointer}
   - X
   - C
@@ -49,14 +49,14 @@ layers:
   - .
   - {t: /, h: pointer}
   - LALT
-  - LGUI
   - SPACE
   - lower
-  - LALT
+  - GUI
   - BSPC
+  - LALT
   - raise
-  - RET
   - DEL
+  - RET
   lower:
   - '~'
   - '!'
@@ -107,8 +107,8 @@ layers:
   - /
   - .
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -225,8 +225,8 @@ layers:
   - '&mkp MB3'
   - ''
   - ''
-  - '&mkp MB3'
   - L CLK
+  - '&mkp MB3'
   - BACK
   bt:
   - {t: ▽, type: trans}
