@@ -1,0 +1,7 @@
+if SHIELD_CHARYBDIS_3X5_WIRED
+
+# Set default board
+config BOARD
+    default "pro_micro_rp2040"
+
+endif 

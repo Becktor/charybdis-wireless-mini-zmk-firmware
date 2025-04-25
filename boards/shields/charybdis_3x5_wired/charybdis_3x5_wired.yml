@@ -1,0 +1,14 @@
+file_format: "1"
+id: charybdis_3x5_wired
+name: Charybdis 3x5 Wired
+type: shield
+url: https://github.com/Bastardkb/Charybdis/ # Placeholder URL
+requires:
+  - pro_micro_rp2040
+features:
+  - keys
+  - pointer # For trackball
+  # - display # For OLED 
+siblings:
+  - charybdis_left
+  - charybdis_right 

@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ * Based on Splinktegrated Pins: https://docs.bastardkb.com/hw/pins.html
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix_transform = &default_transform;
+        // Enable split keyboard communication
+        zmk,split = &split;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+
+        // Splinktegrated Pins - Left Half (3x5)
+        col-gpios
+            = <&pro_micro_rp2040 27 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // C1 (GP27)
+            , <&pro_micro_rp2040 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // C2 (GP28)
+            , <&pro_micro_rp2040 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // C3 (GP21)
+            , <&pro_micro_rp2040 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C4 (GP6)
+            , <&pro_micro_rp2040 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // C5 (GP7)
+            ;
+
+        row-gpios
+            = <&pro_micro_rp2040 29 GPIO_ACTIVE_HIGH> // R1 (GP29)
+            , <&pro_micro_rp2040 26 GPIO_ACTIVE_HIGH> // R2 (GP26)
+            , <&pro_micro_rp2040 5 GPIO_ACTIVE_HIGH>  // R3 (GP5)
+            , <&pro_micro_rp2040 4 GPIO_ACTIVE_HIGH>  // R4 (GP4)
+            , <&pro_micro_rp2040 9 GPIO_ACTIVE_HIGH>  // R5 (GP9, Thumb Cluster row)
+            ;
+    };
+
+    default_transform: matrix_transform {
+        compatible = "zmk,matrix-transform";
+        rows = <4>; // 3 Main rows + 1 Thumb row mapped to Row R5/GP9
+        columns = <10>; // 5 cols per side
+        // Map for the *entire* keyboard, ZMK handles splitting
+        map = <
+        RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)          RC(0,5) RC(0,6) RC(0,7) RC(0,8) RC(0,9)
+        RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4)          RC(1,5) RC(1,6) RC(1,7) RC(1,8) RC(1,9)
+        RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)          RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9)
+                        RC(3,2) RC(3,3) RC(3,4)          RC(3,5) RC(3,6) RC(3,7) // Thumbs map to Row 3
+        >;
+    };
+
+    split: split {
+        compatible = "zmk,split-uart";
+        label = "SPLIT";
+        uart = <&uart0>; // Use UART0 for split communication
+        // WARNING: Splinktegrated docs only list GP1 for Serial.
+        // Assuming standard GP0/GP1 for UART0. Verify your TRRS wiring.
+    };
+
+    // Define UART pins for split communication (Assumed Standard)
+    &uart0 {
+        status = "okay";
+        tx-pin = <0>; // TX Pin GPIO0
+        rx-pin = <1>; // RX Pin GPIO1
+    };
+
+    // --- Unused peripheral definitions removed --- 
+
+}; 
